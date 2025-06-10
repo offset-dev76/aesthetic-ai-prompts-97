@@ -20,13 +20,96 @@ const productData = {
     story: "Born from a sketch made during a quiet Tuesday morning. The goldsmith traced the same curve seventeen times before finding the one that felt like breath.",
     materials: "14k recycled gold, ethically sourced",
     size: "Available in sizes 5-9"
+  },
+  2: {
+    id: 2,
+    name: "Thread Earrings",
+    price: 98,
+    images: [
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80"
+    ],
+    mood: "Effortless Layering",
+    description: "delicate lines that follow your movement",
+    details: "Each thread is carefully drawn and shaped by hand, creating a unique flow that catches light as you move. The minimal weight ensures they become part of you, not a statement about you.",
+    styling: "perfect with loose hair or sleek updos, day or evening light",
+    story: "Designed during a period of transition, these earrings embody the delicate balance between presence and absence.",
+    materials: "Sterling silver with 18k gold plating",
+    size: "One size"
+  },
+  3: {
+    id: 3,
+    name: "Echo Necklace",
+    price: 156,
+    images: [
+      "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80"
+    ],
+    mood: "Late-Night Gold",
+    description: "catches light like distant laughter",
+    details: "A study in contrasts, this piece combines solid form with negative space. The pendant hangs just so, creating a focal point that draws the eye without demanding attention.",
+    styling: "layered with other pieces or worn alone against bare skin",
+    story: "Inspired by the reflection of city lights on water, capturing that moment when everything feels possible.",
+    materials: "14k gold with ethically sourced pearl accent",
+    size: "Adjustable 16-18 inches"
+  },
+  4: {
+    id: 4,
+    name: "Calm Bracelet",
+    price: 89,
+    images: [
+      "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80"
+    ],
+    mood: "City Calm",
+    description: "grounding weight for busy days",
+    details: "The gentle weight of this piece creates a subtle awareness throughout the day. Each link is joined by hand, creating a fluid movement that follows your gestures.",
+    styling: "worn alone for focus or stacked for presence",
+    story: "Conceived during morning commutes, this bracelet transforms the chaos of urban life into a centering object.",
+    materials: "Recycled sterling silver",
+    size: "Small (6.5\"), Medium (7\"), Large (7.5\")"
+  },
+  5: {
+    id: 5,
+    name: "Sunday Chain",
+    price: 145,
+    images: [
+      "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80"
+    ],
+    mood: "Weekend Skin",
+    description: "made for lazy morning coffee",
+    details: "Every link is individually cast and connected, creating a rhythm of light and shadow across the collarbone. The weight is substantial enough to be felt, light enough to be forgotten.",
+    styling: "perfect with oversized shirts or against bare shoulders",
+    story: "Named after the feeling of Sunday mornings, when time stretches out and nothing needs to happen quickly.",
+    materials: "Solid brass with matte gold finish",
+    size: "18 inches with 2 inch extender"
+  },
+  6: {
+    id: 6,
+    name: "Memory Hoops",
+    price: 112,
+    images: [
+      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+    ],
+    mood: "Effortless Layering",
+    description: "circles that hold stories",
+    details: "These perfectly imperfect hoops embrace asymmetry. Each circle is slightly unique, a deliberate choice to celebrate the beauty in small variations.",
+    styling: "equally at home with morning coffee or evening wines",
+    story: "Inspired by the rings left behind on wooden tables, marking moments shared between friends.",
+    materials: "Recycled brass with hand-rubbed finish",
+    size: "30mm diameter"
   }
 };
 
 const ProductDetailPage = () => {
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(0);
-  const product = productData[id as keyof typeof productData];
+  
+  // Fix: Convert id from string to number for type safety
+  const numericId = id ? parseInt(id) : 1;
+  const product = productData[numericId as keyof typeof productData];
 
   if (!product) {
     return <div className="pt-24 text-center">Product not found</div>;
