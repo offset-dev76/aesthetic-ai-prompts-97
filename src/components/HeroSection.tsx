@@ -6,7 +6,7 @@ export const HeroSection = () => {
       <div className="relative max-w-[1600px] mx-auto grid lg:grid-cols-2 gap-12 items-center px-[16px] py-[40px]">
         {/* Content */}
         <div className="fade-up">
-          <h1 className="text-5xl md:text-7xl serif font-bold text-charcoal mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl serif text-charcoal mb-6 leading-tight font-extrabold text-left">
             Worn like
             <br />
             <em className="text-ash">a thought</em>

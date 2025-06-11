@@ -16,7 +16,7 @@ export const TestimonialsSection = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <div className="fade-up">
-            <h2 className="text-3xl serif font-bold text-charcoal mb-4">
+            <h2 className="serif text-charcoal mb-4 font-extrabold text-4xl">
               In Their Words
             </h2>
           </div>

@@ -20,7 +20,7 @@ export const CollectionsSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="fade-up">
-            <h2 className="text-4xl md:text-5xl serif font-bold text-charcoal mb-4">
+            <h2 className="md:text-5xl serif text-charcoal mb-4 text-4xl font-extrabold">
               Curated by Mood
             </h2>
             <p className="text-lg font-light text-ash">
