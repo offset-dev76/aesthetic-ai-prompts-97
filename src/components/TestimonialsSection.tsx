@@ -23,9 +23,9 @@ export const TestimonialsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => <div key={index} className="text-center fade-up" style={{
+          {testimonials.map((testimonial, index) => <div key={index} style={{
           animationDelay: `${index * 0.2}s`
-        }}>
+        }} className="text-center fade-up border border-gray-300 rounded-none">
               <blockquote className="text-lg serif italic text-charcoal mb-6 leading-relaxed">
                 "{testimonial.quote}"
               </blockquote>
