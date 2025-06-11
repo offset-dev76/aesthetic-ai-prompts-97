@@ -12,7 +12,7 @@ const testimonials = [{
   role: "Designer"
 }];
 export const TestimonialsSection = () => {
-  return <section className="bg-blush/30 py-[80px]">
+  return <section className="bg-blush/30 py-[40px]">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <div className="fade-up">

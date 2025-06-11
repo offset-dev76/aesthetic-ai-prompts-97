@@ -9,7 +9,7 @@ const HomePage = () => {
       <TestimonialsSection />
       
       {/* Brand Intro */}
-      <section className="px-4 py-[80px]">
+      <section className="px-4 py-[40px]">
         <div className="max-w-3xl mx-auto text-center">
           <div className="fade-up">
             <h2 className="text-3xl md:text-4xl serif font-bold text-charcoal mb-6 leading-relaxed">

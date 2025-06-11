@@ -16,7 +16,7 @@ const collections = [{
   tag: "casual-elegance"
 }];
 export const CollectionsSection = () => {
-  return <section className="px-4 py-[80px]">
+  return <section className="px-4 py-[40px]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="fade-up">
