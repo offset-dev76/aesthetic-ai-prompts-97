@@ -22,10 +22,10 @@ export const TestimonialsSection = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 mx-0 my-0">
           {testimonials.map((testimonial, index) => <div key={index} style={{
           animationDelay: `${index * 0.2}s`
-        }} className="text-center fade-up border border-gray-300 rounded-none">
+        }} className="text-center fade-up border border-zinc-300 rounded-none px-[10px] py-[10px]">
               <blockquote className="text-lg serif italic text-charcoal mb-6 leading-relaxed">
                 "{testimonial.quote}"
               </blockquote>
