@@ -3,7 +3,7 @@ export const HeroSection = () => {
   return <section className="relative min-h-screen flex items-center">
       <div className="absolute inset-0 bg-gradient-to-br from-linen via-blush/30 to-clay/20" />
       
-      <div className="relative max-w-[1600px] mx-auto grid lg:grid-cols-2 gap-12 items-center px-[16px]">
+      <div className="relative max-w-[1600px] mx-auto grid lg:grid-cols-2 gap-12 items-center px-[16px] py-[16px]">
         {/* Content */}
         <div className="fade-up">
           <h1 className="text-5xl md:text-7xl serif font-bold text-charcoal mb-6 leading-tight">

@@ -1,18 +1,15 @@
-
 import { Link } from "react-router-dom";
 import { HeroSection } from "@/components/HeroSection";
 import { CollectionsSection } from "@/components/CollectionsSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
-
 const HomePage = () => {
-  return (
-    <div className="pt-16">
+  return <div className="pt-16">
       <HeroSection />
       <CollectionsSection />
       <TestimonialsSection />
       
       {/* Brand Intro */}
-      <section className="py-24 px-4">
+      <section className="px-4 py-[80px]">
         <div className="max-w-3xl mx-auto text-center">
           <div className="fade-up">
             <h2 className="text-3xl md:text-4xl serif font-bold text-charcoal mb-6 leading-relaxed">
@@ -26,8 +23,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default HomePage;
