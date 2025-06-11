@@ -22,23 +22,25 @@ export const TestimonialsSection = () => {
     <section className="py-24 bg-blush/30">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl serif font-light text-charcoal mb-4">
-            In Their Words
-          </h2>
+          <div className="fade-up">
+            <h2 className="text-3xl serif font-bold text-charcoal mb-4">
+              In Their Words
+            </h2>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="text-center animate-fade-in"
+              className="text-center fade-up"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <blockquote className="text-lg serif italic text-charcoal mb-6 leading-relaxed">
                 "{testimonial.quote}"
               </blockquote>
               <div>
-                <p className="font-medium text-charcoal">{testimonial.author}</p>
+                <p className="font-bold text-charcoal">{testimonial.author}</p>
                 <p className="text-sm text-ash">{testimonial.role}</p>
               </div>
             </div>

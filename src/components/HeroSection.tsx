@@ -8,8 +8,8 @@ export const HeroSection = () => {
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
         {/* Content */}
-        <div className="animate-fade-in">
-          <h1 className="text-5xl md:text-7xl serif font-light text-charcoal mb-6 leading-tight">
+        <div className="fade-up">
+          <h1 className="text-5xl md:text-7xl serif font-bold text-charcoal mb-6 leading-tight">
             Worn like
             <br />
             <em className="text-ash">a thought</em>
@@ -27,12 +27,12 @@ export const HeroSection = () => {
         </div>
 
         {/* Hero Image */}
-        <div className="animate-scale-in">
+        <div className="fade-up" style={{ animationDelay: '0.2s' }}>
           <div className="relative">
             <img
-              src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=800&q=80"
-              alt="Calm moment with accessories"
-              className="w-full h-[600px] object-cover rounded-lg shadow-xl"
+              src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80"
+              alt="Elegant jewelry accessories"
+              className="w-full h-[600px] object-cover rounded-lg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent rounded-lg" />
           </div>

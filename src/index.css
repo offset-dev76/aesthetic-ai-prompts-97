@@ -50,11 +50,15 @@
   .serif {
     @apply font-cormorant;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
 }
 
 @layer components {
   .hover-lift {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    @apply transition-all duration-300 hover:-translate-y-1;
   }
   
   .mood-tag {
@@ -68,5 +72,10 @@
   .floating-label input:focus + label,
   .floating-label input:not(:placeholder-shown) + label {
     @apply transform -translate-y-4 scale-75 text-xs text-ash;
+  }
+
+  .fade-up {
+    @apply animate-fade-up opacity-0;
+    animation-fill-mode: forwards;
   }
 }

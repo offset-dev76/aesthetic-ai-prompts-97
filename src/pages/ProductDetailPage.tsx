@@ -2,16 +2,18 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import { RecommendedProducts } from "@/components/RecommendedProducts";
 
-// Mock product data
+// Mock product data with Indian pricing and jewelry images
 const productData = {
   1: {
     id: 1,
     name: "Whisper Ring",
-    price: 128,
+    price: 8500,
     images: [
-      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1603561596112-db1d4e93306d?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80"
     ],
     mood: "Subtle Spark",
     description: "a whisper cast in metal",
@@ -24,10 +26,10 @@ const productData = {
   2: {
     id: 2,
     name: "Thread Earrings",
-    price: 98,
+    price: 6500,
     images: [
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=800&q=80"
     ],
     mood: "Effortless Layering",
     description: "delicate lines that follow your movement",
@@ -40,10 +42,10 @@ const productData = {
   3: {
     id: 3,
     name: "Echo Necklace",
-    price: 156,
+    price: 12000,
     images: [
-      "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80"
     ],
     mood: "Late-Night Gold",
     description: "catches light like distant laughter",
@@ -56,10 +58,10 @@ const productData = {
   4: {
     id: 4,
     name: "Calm Bracelet",
-    price: 89,
+    price: 7500,
     images: [
-      "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80"
     ],
     mood: "City Calm",
     description: "grounding weight for busy days",
@@ -72,10 +74,10 @@ const productData = {
   5: {
     id: 5,
     name: "Sunday Chain",
-    price: 145,
+    price: 11000,
     images: [
-      "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80"
     ],
     mood: "Weekend Skin",
     description: "made for lazy morning coffee",
@@ -88,10 +90,10 @@ const productData = {
   6: {
     id: 6,
     name: "Memory Hoops",
-    price: 112,
+    price: 9500,
     images: [
-      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80"
     ],
     mood: "Effortless Layering",
     description: "circles that hold stories",
@@ -106,58 +108,78 @@ const productData = {
 const ProductDetailPage = () => {
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(0);
+  const { addToCart } = useCart();
   
   // Fix: Convert id from string to number for type safety
   const numericId = id ? parseInt(id) : 1;
   const product = productData[numericId as keyof typeof productData];
 
   if (!product) {
-    return <div className="pt-24 text-center">Product not found</div>;
+    return (
+      <div className="pt-24 text-center">
+        <div className="fade-up">
+          <h1 className="text-2xl font-bold text-charcoal">Product not found</h1>
+        </div>
+      </div>
+    );
   }
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0]
+    });
+  };
 
   return (
     <div className="pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Images */}
+        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          {/* Images - Left Side */}
           <div className="space-y-4">
-            <div className="aspect-square overflow-hidden rounded-lg">
-              <img
-                src={product.images[selectedImage]}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
+            <div className="fade-up">
+              <div className="aspect-square overflow-hidden rounded-lg">
+                <img
+                  src={product.images[selectedImage]}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
-            <div className="flex gap-2">
-              {product.images.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImage(index)}
-                  className={`w-20 h-20 rounded-lg overflow-hidden border-2 ${
-                    selectedImage === index ? 'border-charcoal' : 'border-clay'
-                  }`}
-                >
-                  <img
-                    src={image}
-                    alt={`${product.name} view ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
+            <div className="fade-up" style={{ animationDelay: '0.1s' }}>
+              <div className="flex gap-2">
+                {product.images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImage(index)}
+                    className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
+                      selectedImage === index ? 'border-charcoal' : 'border-clay'
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${product.name} view ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Product Info */}
+          {/* Product Info - Right Side */}
           <div className="space-y-8">
-            <div>
+            <div className="fade-up" style={{ animationDelay: '0.2s' }}>
               <span className="mood-tag mb-4 inline-block">{product.mood}</span>
-              <h1 className="text-4xl serif font-light text-charcoal mb-2">
+              <h1 className="text-4xl serif font-bold text-charcoal mb-2">
                 {product.name}
               </h1>
-              <p className="text-2xl text-charcoal">${product.price}</p>
+              <p className="text-2xl text-charcoal">₹{product.price.toLocaleString('en-IN')}</p>
             </div>
 
-            <div>
+            <div className="fade-up" style={{ animationDelay: '0.3s' }}>
               <p className="text-lg serif italic text-ash mb-4">
                 {product.description}
               </p>
@@ -166,29 +188,32 @@ const ProductDetailPage = () => {
               </p>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="text-lg serif text-charcoal">Styling Notes</h3>
+            <div className="fade-up space-y-4" style={{ animationDelay: '0.4s' }}>
+              <h3 className="text-lg serif font-bold text-charcoal">Styling Notes</h3>
               <p className="text-ash italic">{product.styling}</p>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="text-lg serif text-charcoal">Story</h3>
+            <div className="fade-up space-y-4" style={{ animationDelay: '0.5s' }}>
+              <h3 className="text-lg serif font-bold text-charcoal">Story</h3>
               <p className="text-ash leading-relaxed">{product.story}</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 py-6 border-t border-clay/30">
+            <div className="fade-up grid grid-cols-2 gap-4 py-6 border-t border-clay/30" style={{ animationDelay: '0.6s' }}>
               <div>
-                <h4 className="text-sm font-medium text-charcoal mb-1">Materials</h4>
+                <h4 className="text-sm font-bold text-charcoal mb-1">Materials</h4>
                 <p className="text-sm text-ash">{product.materials}</p>
               </div>
               <div>
-                <h4 className="text-sm font-medium text-charcoal mb-1">Size</h4>
+                <h4 className="text-sm font-bold text-charcoal mb-1">Size</h4>
                 <p className="text-sm text-ash">{product.size}</p>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <Button className="w-full bg-charcoal hover:bg-ash text-linen py-3 text-lg tracking-wide">
+            <div className="fade-up space-y-4" style={{ animationDelay: '0.7s' }}>
+              <Button 
+                onClick={handleAddToCart}
+                className="w-full bg-charcoal hover:bg-ash text-linen py-3 text-lg tracking-wide"
+              >
                 Add to Collection
               </Button>
               <p className="text-xs text-ash text-center">
@@ -197,6 +222,9 @@ const ProductDetailPage = () => {
             </div>
           </div>
         </div>
+
+        {/* Recommended Products */}
+        <RecommendedProducts currentProductId={product.id} />
       </div>
     </div>
   );
