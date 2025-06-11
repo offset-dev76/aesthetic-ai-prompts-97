@@ -1,31 +1,25 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     // Handle form submission here
   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
   };
-
-  return (
-    <div className="pt-24 pb-16">
+  return <div className="pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl serif font-light text-charcoal mb-4">
@@ -41,54 +35,27 @@ const ContactPage = () => {
           <div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="floating-label">
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder=" "
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-transparent border-clay focus:border-charcoal transition-colors"
-                  required
-                />
+                <Input type="text" name="name" placeholder=" " value={formData.name} onChange={handleChange} className="w-full px-4 py-3 bg-transparent border-clay focus:border-charcoal transition-colors" required />
                 <label className="absolute left-4 top-3 text-ash transition-all duration-200 pointer-events-none">
                   Your Name
                 </label>
               </div>
 
               <div className="floating-label">
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder=" "
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-transparent border-clay focus:border-charcoal transition-colors"
-                  required
-                />
+                <Input type="email" name="email" placeholder=" " value={formData.email} onChange={handleChange} className="w-full px-4 py-3 bg-transparent border-clay focus:border-charcoal transition-colors" required />
                 <label className="absolute left-4 top-3 text-ash transition-all duration-200 pointer-events-none">
                   Email Address
                 </label>
               </div>
 
               <div className="floating-label">
-                <Textarea
-                  name="message"
-                  placeholder=" "
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={6}
-                  className="w-full px-4 py-3 bg-transparent border-clay focus:border-charcoal transition-colors resize-none"
-                  required
-                />
+                <Textarea name="message" placeholder=" " value={formData.message} onChange={handleChange} rows={6} className="w-full px-4 py-3 bg-transparent border-clay focus:border-charcoal transition-colors resize-none" required />
                 <label className="absolute left-4 top-3 text-ash transition-all duration-200 pointer-events-none">
                   Your Message
                 </label>
               </div>
 
-              <Button
-                type="submit"
-                className="w-full bg-charcoal hover:bg-ash text-linen py-3 text-lg tracking-wide"
-              >
+              <Button type="submit" className="w-full bg-charcoal hover:bg-ash text-linen py-3 text-lg tracking-wide">
                 Send Thoughts
               </Button>
             </form>
@@ -99,7 +66,7 @@ const ContactPage = () => {
             <div>
               <h3 className="text-xl serif text-charcoal mb-4">Get in Touch</h3>
               <div className="space-y-3 text-ash">
-                <p>hello@lumina-accessories.com</p>
+                <p className="text-base font-normal">hello@lumina-accessories.com</p>
                 <p>+1 (555) 123-4567</p>
                 <p>Available weekdays, 9am-5pm PST</p>
               </div>
@@ -138,8 +105,6 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default ContactPage;
