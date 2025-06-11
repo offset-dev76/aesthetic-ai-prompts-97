@@ -68,13 +68,17 @@ const CartPage = () => {
                   className="fade-up flex items-center space-x-4 bg-white p-4 rounded-lg border border-clay/30"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-20 h-20 object-cover rounded-lg"
-                  />
+                  <Link to={`/product/${item.id}`} className="flex-shrink-0">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-20 h-20 object-cover rounded-lg hover:opacity-80 transition-opacity cursor-pointer"
+                    />
+                  </Link>
                   <div className="flex-1">
-                    <h3 className="serif font-bold text-charcoal">{item.name}</h3>
+                    <Link to={`/product/${item.id}`} className="hover:text-ash transition-colors">
+                      <h3 className="serif font-bold text-charcoal cursor-pointer">{item.name}</h3>
+                    </Link>
                     <p className="text-ash">₹{item.price.toLocaleString('en-IN')}</p>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -120,12 +124,22 @@ const CartPage = () => {
                     <span>₹{getTotalPrice().toLocaleString('en-IN')}</span>
                   </div>
                 </div>
-                <Button
-                  onClick={() => setShowCheckout(true)}
-                  className="w-full bg-charcoal hover:bg-ash text-linen"
-                >
-                  Proceed to Checkout
-                </Button>
+                <div className="space-y-3">
+                  <Button
+                    onClick={() => setShowCheckout(true)}
+                    className="w-full bg-charcoal hover:bg-ash text-linen"
+                  >
+                    Proceed to Checkout
+                  </Button>
+                  <Link to="/products" className="block">
+                    <Button
+                      variant="outline"
+                      className="w-full border-clay text-ash hover:bg-clay/20"
+                    >
+                      Continue Shopping
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -142,6 +156,7 @@ const CartPage = () => {
                     placeholder="Full Name"
                     value={billingInfo.name}
                     onChange={handleInputChange}
+                    className="placeholder:text-ash/60 text-charcoal"
                     required
                   />
                   <Input
@@ -150,6 +165,7 @@ const CartPage = () => {
                     placeholder="Email Address"
                     value={billingInfo.email}
                     onChange={handleInputChange}
+                    className="placeholder:text-ash/60 text-charcoal"
                     required
                   />
                 </div>
@@ -159,6 +175,7 @@ const CartPage = () => {
                   placeholder="Phone Number"
                   value={billingInfo.phone}
                   onChange={handleInputChange}
+                  className="placeholder:text-ash/60 text-charcoal"
                   required
                 />
 
@@ -167,6 +184,7 @@ const CartPage = () => {
                   placeholder="Address"
                   value={billingInfo.address}
                   onChange={handleInputChange}
+                  className="placeholder:text-ash/60 text-charcoal"
                   required
                 />
 
@@ -176,6 +194,7 @@ const CartPage = () => {
                     placeholder="City"
                     value={billingInfo.city}
                     onChange={handleInputChange}
+                    className="placeholder:text-ash/60 text-charcoal"
                     required
                   />
                   <Input
@@ -183,6 +202,7 @@ const CartPage = () => {
                     placeholder="State"
                     value={billingInfo.state}
                     onChange={handleInputChange}
+                    className="placeholder:text-ash/60 text-charcoal"
                     required
                   />
                   <Input
@@ -190,6 +210,7 @@ const CartPage = () => {
                     placeholder="Pincode"
                     value={billingInfo.pincode}
                     onChange={handleInputChange}
+                    className="placeholder:text-ash/60 text-charcoal"
                     required
                   />
                 </div>

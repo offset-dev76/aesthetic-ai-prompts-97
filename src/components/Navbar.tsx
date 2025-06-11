@@ -60,16 +60,16 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Fixed positioning and slide animation */}
         {isMenuOpen && (
-          <div className="md:hidden animate-slide-up">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-linen border-t border-clay/20">
+          <div className="md:hidden absolute left-0 right-0 top-full bg-linen/95 backdrop-blur-sm border-b border-clay/20 animate-slide-down">
+            <div className="px-4 py-3 space-y-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block px-3 py-2 text-sm font-light tracking-wide text-ash hover:text-charcoal"
+                  className="block px-3 py-2 text-sm font-light tracking-wide text-ash hover:text-charcoal transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -77,7 +77,7 @@ export const Navbar = () => {
               <Link
                 to="/cart"
                 onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 text-sm font-light tracking-wide text-ash hover:text-charcoal"
+                className="block px-3 py-2 text-sm font-light tracking-wide text-ash hover:text-charcoal transition-colors"
               >
                 Cart ({getTotalItems()})
               </Link>

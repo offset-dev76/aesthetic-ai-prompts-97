@@ -176,7 +176,20 @@ const ProductDetailPage = () => {
               <h1 className="text-4xl serif font-bold text-charcoal mb-2">
                 {product.name}
               </h1>
-              <p className="text-2xl text-charcoal">₹{product.price.toLocaleString('en-IN')}</p>
+              <p className="text-2xl text-charcoal mb-6">₹{product.price.toLocaleString('en-IN')}</p>
+              
+              {/* Moved Add to Cart and Gift packaging here */}
+              <div className="space-y-4 mb-6">
+                <Button 
+                  onClick={handleAddToCart}
+                  className="w-full bg-charcoal hover:bg-ash text-linen py-3 text-lg tracking-wide"
+                >
+                  Add to Collection
+                </Button>
+                <p className="text-xs text-ash text-center">
+                  Gift packaging available at checkout
+                </p>
+              </div>
             </div>
 
             <div className="fade-up" style={{ animationDelay: '0.3s' }}>
@@ -207,18 +220,6 @@ const ProductDetailPage = () => {
                 <h4 className="text-sm font-bold text-charcoal mb-1">Size</h4>
                 <p className="text-sm text-ash">{product.size}</p>
               </div>
-            </div>
-
-            <div className="fade-up space-y-4" style={{ animationDelay: '0.7s' }}>
-              <Button 
-                onClick={handleAddToCart}
-                className="w-full bg-charcoal hover:bg-ash text-linen py-3 text-lg tracking-wide"
-              >
-                Add to Collection
-              </Button>
-              <p className="text-xs text-ash text-center">
-                Gift packaging available at checkout
-              </p>
             </div>
           </div>
         </div>
