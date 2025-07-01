@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 import { Minus, Plus, Trash2 } from "lucide-react";
+import { createOrder, OrderData } from "@/services/orderService";
 
 const CartPage = () => {
-  const { items, updateQuantity, removeFromCart, getTotalPrice } = useCart();
+  const { items, updateQuantity, removeFromCart, getTotalPrice, clearCart } = useCart();
+  const { toast } = useToast();
   const [showCheckout, setShowCheckout] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [billingInfo, setBillingInfo] = useState({
     name: '',
     email: '',
@@ -19,11 +23,60 @@ const CartPage = () => {
     pincode: ''
   });
 
-  const handleCheckout = (e: React.FormEvent) => {
+  const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Processing order:', { items, billingInfo, total: getTotalPrice() });
-    // Handle checkout logic here
-    alert('Order placed successfully!');
+    setIsProcessing(true);
+
+    try {
+      const orderData: OrderData = {
+        customer_name: billingInfo.name,
+        customer_email: billingInfo.email,
+        customer_phone: billingInfo.phone,
+        shipping_address: billingInfo.address,
+        shipping_city: billingInfo.city,
+        shipping_state: billingInfo.state,
+        shipping_pincode: billingInfo.pincode,
+        total_amount: getTotalPrice(),
+        items: items
+      };
+
+      const result = await createOrder(orderData);
+
+      if (result.success) {
+        toast({
+          title: "Order Placed Successfully!",
+          description: `Your order #${result.orderId} has been confirmed.`,
+        });
+        
+        // Clear the cart and reset form
+        clearCart();
+        setBillingInfo({
+          name: '',
+          email: '',
+          phone: '',
+          address: '',
+          city: '',
+          state: '',
+          pincode: ''
+        });
+        setShowCheckout(false);
+      } else {
+        toast({
+          title: "Order Failed",
+          description: result.error || "There was an error processing your order. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      toast({
+        title: "Order Failed",
+        description: "There was an error processing your order. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,6 +181,7 @@ const CartPage = () => {
                   <Button
                     onClick={() => setShowCheckout(true)}
                     className="w-full bg-charcoal hover:bg-ash text-linen"
+                    disabled={isProcessing}
                   >
                     Proceed to Checkout
                   </Button>
@@ -158,6 +212,7 @@ const CartPage = () => {
                     onChange={handleInputChange}
                     className="placeholder:text-ash/60 text-charcoal"
                     required
+                    disabled={isProcessing}
                   />
                   <Input
                     name="email"
@@ -167,6 +222,7 @@ const CartPage = () => {
                     onChange={handleInputChange}
                     className="placeholder:text-ash/60 text-charcoal"
                     required
+                    disabled={isProcessing}
                   />
                 </div>
 
@@ -177,6 +233,7 @@ const CartPage = () => {
                   onChange={handleInputChange}
                   className="placeholder:text-ash/60 text-charcoal"
                   required
+                  disabled={isProcessing}
                 />
 
                 <Input
@@ -186,6 +243,7 @@ const CartPage = () => {
                   onChange={handleInputChange}
                   className="placeholder:text-ash/60 text-charcoal"
                   required
+                  disabled={isProcessing}
                 />
 
                 <div className="grid md:grid-cols-3 gap-4">
@@ -196,6 +254,7 @@ const CartPage = () => {
                     onChange={handleInputChange}
                     className="placeholder:text-ash/60 text-charcoal"
                     required
+                    disabled={isProcessing}
                   />
                   <Input
                     name="state"
@@ -204,6 +263,7 @@ const CartPage = () => {
                     onChange={handleInputChange}
                     className="placeholder:text-ash/60 text-charcoal"
                     required
+                    disabled={isProcessing}
                   />
                   <Input
                     name="pincode"
@@ -212,6 +272,7 @@ const CartPage = () => {
                     onChange={handleInputChange}
                     className="placeholder:text-ash/60 text-charcoal"
                     required
+                    disabled={isProcessing}
                   />
                 </div>
 
@@ -228,14 +289,16 @@ const CartPage = () => {
                     variant="outline"
                     onClick={() => setShowCheckout(false)}
                     className="flex-1"
+                    disabled={isProcessing}
                   >
                     Back to Cart
                   </Button>
                   <Button
                     type="submit"
                     className="flex-1 bg-charcoal hover:bg-ash text-linen"
+                    disabled={isProcessing}
                   >
-                    Place Order
+                    {isProcessing ? 'Processing...' : 'Place Order'}
                   </Button>
                 </div>
               </form>
