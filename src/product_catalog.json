@@ -1,0 +1,59 @@
+
+{
+  "products": [
+    {
+      "productId": "P001",
+      "productName": "Whisper Ring",
+      "productDescription": "a whisper cast in metal - Hand-forged from recycled gold, this ring carries the weight of intention without the burden of excess.",
+      "productPrice": 8500,
+      "offPrice": null,
+      "productTags": ["ring", "gold", "minimalist", "subtle-spark"],
+      "imageIds": ["p001_1.jpg", "p001_2.jpg"]
+    },
+    {
+      "productId": "P002", 
+      "productName": "Thread Earrings",
+      "productDescription": "delicate lines that follow your movement - Each thread is carefully drawn and shaped by hand, creating a unique flow that catches light as you move.",
+      "productPrice": 6500,
+      "offPrice": 5500,
+      "productTags": ["earrings", "silver", "dainty", "effortless-layering"],
+      "imageIds": ["p002_1.jpg", "p002_2.jpg"]
+    },
+    {
+      "productId": "P003",
+      "productName": "Echo Necklace", 
+      "productDescription": "catches light like distant laughter - A study in contrasts, this piece combines solid form with negative space.",
+      "productPrice": 12000,
+      "offPrice": null,
+      "productTags": ["necklace", "gold", "statement", "late-night-gold"],
+      "imageIds": ["p003_1.jpg", "p003_2.jpg"]
+    },
+    {
+      "productId": "P004",
+      "productName": "Calm Bracelet",
+      "productDescription": "grounding weight for busy days - The gentle weight of this piece creates a subtle awareness throughout the day.",
+      "productPrice": 7500,
+      "offPrice": 6800,
+      "productTags": ["bracelet", "silver", "minimal", "city-calm"],
+      "imageIds": ["p004_1.jpg", "p004_2.jpg"]
+    },
+    {
+      "productId": "P005",
+      "productName": "Sunday Chain",
+      "productDescription": "made for lazy morning coffee - Every link is individually cast and connected, creating a rhythm of light and shadow.",
+      "productPrice": 11000,
+      "offPrice": null,
+      "productTags": ["necklace", "brass", "chain", "weekend-skin"],
+      "imageIds": ["p005_1.jpg", "p005_2.jpg"]
+    },
+    {
+      "productId": "P006",
+      "productName": "Memory Hoops",
+      "productDescription": "circles that hold stories - These perfectly imperfect hoops embrace asymmetry, celebrating beauty in small variations.",
+      "productPrice": 9500,
+      "offPrice": 8500,
+      "productTags": ["earrings", "brass", "hoops", "effortless-layering"],
+      "imageIds": ["p006_1.jpg", "p006_2.jpg"]
+    }
+  ]
+}

@@ -1,40 +1,14 @@
 
-import { Link } from "react-router-dom";
 import { ProductCard } from "./ProductCard";
-
-const recommendedProducts = [
-  {
-    id: 2,
-    name: "Thread Earrings",
-    price: 6500,
-    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80",
-    mood: "Effortless Layering",
-    description: "delicate lines that follow your movement"
-  },
-  {
-    id: 4,
-    name: "Calm Bracelet",
-    price: 7500,
-    image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=600&q=80",
-    mood: "City Calm",
-    description: "grounding weight for busy days"
-  },
-  {
-    id: 6,
-    name: "Memory Hoops",
-    price: 9500,
-    image: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=600&q=80",
-    mood: "Effortless Layering",
-    description: "circles that hold stories"
-  }
-];
+import { getAllProducts } from "@/utils/productUtils";
 
 interface RecommendedProductsProps {
-  currentProductId: number;
+  currentProductId: string;
 }
 
 export const RecommendedProducts = ({ currentProductId }: RecommendedProductsProps) => {
-  const filteredProducts = recommendedProducts.filter(product => product.id !== currentProductId);
+  const allProducts = getAllProducts();
+  const filteredProducts = allProducts.filter(product => product.id !== currentProductId);
 
   return (
     <section className="py-16 border-t border-clay/30">

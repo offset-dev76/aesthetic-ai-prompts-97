@@ -5,12 +5,14 @@ import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   price: number;
+  offPrice?: number;
   image: string;
   mood: string;
   description: string;
+  tags: string[];
 }
 
 interface ProductCardProps {
@@ -24,7 +26,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart(product);
+    addToCart({
+      id: parseInt(product.id.replace('P', '')),
+      name: product.name,
+      price: product.offPrice || product.price,
+      image: product.image
+    });
   };
 
   return (
@@ -58,11 +65,20 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             <h3 className="text-lg serif font-bold text-charcoal group-hover:text-ash transition-colors">
               {product.name}
             </h3>
-            <span className="text-charcoal font-medium">₹{product.price.toLocaleString('en-IN')}</span>
+            <div className="text-right">
+              {product.offPrice ? (
+                <div className="flex flex-col items-end">
+                  <span className="text-charcoal font-medium">₹{product.offPrice.toLocaleString('en-IN')}</span>
+                  <span className="text-xs text-ash line-through">₹{product.price.toLocaleString('en-IN')}</span>
+                </div>
+              ) : (
+                <span className="text-charcoal font-medium">₹{product.price.toLocaleString('en-IN')}</span>
+              )}
+            </div>
           </div>
           
           <p className="text-sm font-light text-ash italic">
-            {product.description}
+            {product.description.split(' - ')[0]}
           </p>
           
           <span className="mood-tag text-xs">
