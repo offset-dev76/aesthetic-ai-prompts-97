@@ -143,7 +143,7 @@ export const OrdersSection = () => {
             </SelectContent>
           </Select>
         </CardHeader>
-        <CardContent>
+        <CardContent className="bg-zinc-50">
           <Table>
             <TableHeader>
               <TableRow>
