@@ -1,4 +1,3 @@
-
 import { ProductCard } from "./ProductCard";
 import { getAllProducts } from "@/utils/productUtils";
 

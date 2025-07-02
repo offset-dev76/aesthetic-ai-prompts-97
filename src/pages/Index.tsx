@@ -1,4 +1,3 @@
-
 import HomePage from "./HomePage";
 
 const Index = () => {

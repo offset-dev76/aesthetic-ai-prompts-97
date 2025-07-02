@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { Menu, ShoppingBag } from "lucide-react";
 import { useState } from "react";
@@ -13,8 +12,7 @@ export const Navbar = () => {
     { href: "/", label: "Home" },
     { href: "/products", label: "Collection" },
     { href: "/about", label: "Story" },
-    { href: "/contact", label: "Connect" },
-    { href: "/dashboard", label: "Dashboard" }
+    { href: "/contact", label: "Connect" }
   ];
 
   return (

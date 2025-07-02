@@ -1,4 +1,3 @@
-
 import productCatalog from '../product_catalog.json';
 
 export interface Product {
